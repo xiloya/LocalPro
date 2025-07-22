@@ -17,8 +17,11 @@ def create_app():
     bcrypt.init_app(app)
     jwt.init_app(app)
 
-    # Register blueprints
+   
     from .routes.auth import auth_bp
     app.register_blueprint(auth_bp)
+    
+    from .routes.services import services_bp
+    app.register_blueprint(services_bp)
 
     return app
