@@ -24,4 +24,9 @@ def create_app():
     from .routes.services import services_bp
     app.register_blueprint(services_bp)
 
+    from .routes.reservations import reservations_bp
+    app.register_blueprint(reservations_bp)
+
+    from .routes.reviews import review_bp
+    app.register_blueprint(review_bp)
     return app
