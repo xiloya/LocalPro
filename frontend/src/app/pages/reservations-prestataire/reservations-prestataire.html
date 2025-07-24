@@ -1,0 +1,37 @@
+<div class="reservations-container">
+  <h1>Received Reservations</h1>
+
+  <div *ngIf="loading">Loading reservations...</div>
+
+  <table *ngIf="!loading && reservations.length > 0" class="reservations-table">
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Client ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reservation of reservations">
+        <td>{{ reservation.service_id }}</td>
+        <td>{{ reservation.date | date:'short' }}</td>
+        <td>{{ reservation.status }}</td>
+        <td>{{ reservation.client_id }}</td>
+        <td>
+          <button (click)="updateStatus(reservation.id, 'confirmed')">
+            Confirm
+          </button>
+          <button (click)="updateStatus(reservation.id, 'cancelled')">
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && reservations.length === 0">
+    No reservations received.
+  </div>
+</div>

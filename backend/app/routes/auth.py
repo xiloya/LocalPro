@@ -14,7 +14,17 @@ def register():
         return jsonify(msg='Username already exists'), 400
     if User.query.filter_by(email=data['email']).first():
         return jsonify(msg='Email already exists'), 400
-    user = User(username=data['username'], email=data['email'])
+    role = data.get('role', 'client')
+    if role == 'client':
+        user = User(username=data['username'], email=data['email'], role='client')
+    elif role == 'prestataire':
+        from app.models.user import Prestataire
+        user = Prestataire(username=data['username'], email=data['email'], role='prestataire')
+        user.bio = data.get('bio', '')
+        user.competences = data.get('competences', '')
+        user.disponibilite = data.get('disponibilite', True)
+    else:
+        user = User(username=data['username'], email=data['email'], role='user')
     user.set_password(data['password'])
     db.session.add(user)
     db.session.commit()

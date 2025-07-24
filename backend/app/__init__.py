@@ -3,6 +3,7 @@ from .config import Config
 from .database import db, migrate
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 
 bcrypt = Bcrypt()
 jwt = JWTManager()
@@ -16,6 +17,7 @@ def create_app():
     migrate.init_app(app, db)
     bcrypt.init_app(app)
     jwt.init_app(app)
+    CORS(app, resources={r"/*": {"origins": "http://localhost:4200"}})
 
    
     from .routes.auth import auth_bp

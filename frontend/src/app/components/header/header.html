@@ -1,0 +1,29 @@
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <img
+        src="assets/images/img_header_logo.png"
+        alt="LocalPro"
+        class="logo"
+      />
+      <nav class="nav-menu">
+        <a href="#" class="nav-item active">Home</a>
+        <a href="#" class="nav-item">Services</a>
+        <a href="#" class="nav-item">Customers</a>
+        <a href="#" class="nav-item">Providers</a>
+        <a href="#" class="nav-item">Pages</a>
+        <a href="#" class="nav-item">Become a Provider</a>
+        <a href="#" class="nav-item">Admin</a>
+      </nav>
+      <div class="auth-buttons" *ngIf="!(currentUser$ | async); else loggedIn">
+        <a routerLink="/login" class="btn-signin">Sign In</a>
+        <a routerLink="/signup" class="btn-join">Join Us</a>
+      </div>
+      <ng-template #loggedIn>
+        <div class="user-info">
+          Welcome, {{ (currentUser$ | async)?.username }}
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</header>

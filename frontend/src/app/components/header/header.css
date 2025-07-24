@@ -1,0 +1,48 @@
+.header {
+  background-color: #fff;
+  padding: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  width: 154px;
+  height: 34px;
+}
+.nav-menu {
+  display: flex;
+  gap: 16px;
+}
+.nav-item {
+  text-decoration: none;
+  color: #28283c;
+  font-weight: 500;
+}
+.nav-item.active {
+  color: #ff008a;
+}
+.auth-buttons a {
+  margin-left: 12px;
+  text-decoration: none;
+  font-weight: 500;
+}
+.btn-signin {
+  color: #242b3a;
+  background: #ebeced;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+.btn-join {
+  color: #fff;
+  background: linear-gradient(90deg, #fd2692 0%, #0a67f2 100%);
+  padding: 8px 12px;
+  border-radius: 4px;
+}

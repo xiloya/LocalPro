@@ -1,0 +1,459 @@
+<header class="header">
+  <app-header></app-header>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          Connect with Nearby Top-rated
+          <span class="gradient-text">Professional</span>
+        </h1>
+        <p class="hero-subtitle">
+          We can connect you to the right Service, first time and every time.
+        </p>
+
+        <div class="search-container">
+          <input
+            type="text"
+            placeholder="Search for Service"
+            class="search-input"
+            [(ngModel)]="searchService"
+          />
+          <input
+            type="text"
+            placeholder="Enter Location"
+            class="search-input"
+            [(ngModel)]="searchLocation"
+          />
+          <button class="search-btn" (click)="onSearch()">Search</button>
+        </div>
+
+        <div class="popular-searches">
+          <span>Popular Searches:</span>
+          <a href="#" class="popular-tag">Plumber</a>
+          <a href="#" class="popular-tag">Interior</a>
+          <a href="#" class="popular-tag">Nail Technicians</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="assets/images/img_img_210x254.png"
+          alt="Professional Service"
+          style="width: 100%; max-width: 400px; border-radius: 10px"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="categories">
+  <div class="container">
+    <h2 class="section-title">
+      Explore our <span class="gradient-text">Categories</span>
+    </h2>
+    <p class="section-subtitle">
+      Service categories help organize and structure the offerings on a
+      marketplace, making it easier for users to find what they need.
+    </p>
+
+    <div class="categories-grid">
+      <div class="category-card" *ngFor="let category of categories">
+        <img
+          [src]="category.icon"
+          alt="{{ category.name }}"
+          class="category-icon"
+        />
+        <h3 class="category-name">{{ category.name }}</h3>
+        <p class="category-count">{{ category.listings }} Listings</p>
+        <span *ngIf="category.isNew" class="new-badge">New</span>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <a href="#" class="btn-view-all">View All</a>
+    </div>
+  </div>
+</section>
+
+<section class="featured-services">
+  <div class="container">
+    <h2 class="section-title">
+      Our Featured <span class="gradient-text">Services</span>
+    </h2>
+    <p class="section-subtitle">
+      Each listing is designed to be clear and concise, providing customers
+    </p>
+
+    <div class="services-carousel">
+      <div class="service-card" *ngFor="let service of featuredServices">
+        <img
+          [src]="service.image"
+          alt="{{ service.title }}"
+          class="service-image"
+        />
+        <div class="service-content">
+          <h3 class="service-title">{{ service.title }}</h3>
+          <div class="service-meta">
+            <span class="service-price"
+              >Service starts at {{ service.price }}</span
+            >
+            <div class="service-rating">
+              <span>⭐</span>
+              <span>{{ service.rating }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <a href="#" class="btn-view-all">View All</a>
+    </div>
+  </div>
+</section>
+
+<section class="popular-services">
+  <div class="container">
+    <h2 class="section-title">
+      Our Popular <span class="gradient-text">Services</span>
+    </h2>
+    <p class="section-subtitle">
+      Each listing is designed to be clear and concise, providing customers
+    </p>
+
+    <div class="service-tabs">
+      <button
+        *ngFor="let tab of serviceTabs; let i = index"
+        class="tab-btn"
+        [class.active]="activeTab === i"
+        (click)="selectTab(i)"
+      >
+        {{ tab }}
+      </button>
+    </div>
+
+    <div class="services-carousel">
+      <div class="service-card" *ngFor="let service of popularServices">
+        <img
+          [src]="service.image"
+          alt="{{ service.title }}"
+          class="service-image"
+        />
+        <div class="service-content">
+          <h3 class="service-title">{{ service.title }}</h3>
+          <div class="service-meta">
+            <div class="service-rating">
+              <span>⭐</span>
+              <span>{{ service.rating }} ({{ service.reviews }} Reviews)</span>
+            </div>
+            <span class="service-price">From {{ service.price }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <a href="#" class="btn-view-all">View All</a>
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works">
+  <div class="container">
+    <h2 class="section-title" style="color: #ffffff; margin-bottom: 8px">
+      How LocalPro <span class="gradient-text">Works</span>
+    </h2>
+    <p class="section-subtitle" style="color: #e9eaeb; margin-bottom: 40px">
+      Each listing is designed to be clear and concise, providing customers
+    </p>
+
+    <div class="steps">
+      <div class="step" *ngFor="let step of steps">
+        <img [src]="step.icon" alt="{{ step.title }}" class="step-icon" />
+        <h3 class="step-title">{{ step.title }}</h3>
+        <p class="step-description">{{ step.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="popular-services">
+  <div class="container">
+    <h2 class="section-title">
+      Most <span class="gradient-text">Preferred Services</span>
+    </h2>
+    <p class="section-subtitle">
+      Each listing is designed to be clear and concise, providing customers
+    </p>
+
+    <div class="services-carousel">
+      <div class="service-card" *ngFor="let service of preferredServices">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+          "
+        >
+          <img
+            [src]="service.providerAvatar"
+            alt="Provider"
+            style="width: 24px; height: 24px; border-radius: 12px"
+          />
+          <span style="font-size: 14px; color: #74788d"
+            >{{ service.providerName }}</span
+          >
+          <span style="font-size: 14px; color: #656b76; margin-left: auto"
+            >From {{ service.price }}</span
+          >
+        </div>
+        <h3 class="service-title">{{ service.title }}</h3>
+        <div class="service-meta">
+          <div class="service-rating">
+            <span>⭐</span>
+            <span>{{ service.rating }} ({{ service.reviews }} Reviews)</span>
+          </div>
+          <span
+            style="
+              background-color: #eaebee;
+              padding: 6px;
+              border-radius: 4px;
+              font-size: 12px;
+              color: #242b3a;
+            "
+            >{{ service.bookings }} Bookings</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="popular-services">
+  <div class="container">
+    <h2 class="section-title">
+      Popular <span class="gradient-text">Providers</span>
+    </h2>
+    <p class="section-subtitle">
+      Each listing is designed to be clear and concise, providing customers
+    </p>
+
+    <div
+      style="
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 40px;
+      "
+    >
+      <div
+        *ngFor="let provider of popularProviders"
+        style="
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 20px;
+          border: 1px solid #ebeced;
+          border-radius: 5px;
+        "
+      >
+        <img
+          [src]="provider.avatar"
+          alt="{{ provider.name }}"
+          style="width: 64px; height: 64px; border-radius: 32px"
+        />
+        <div>
+          <h3
+            style="
+              font-size: 18px;
+              font-weight: 600;
+              color: #242b3a;
+              margin-bottom: 8px;
+            "
+          >
+            {{ provider.name }}
+          </h3>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              margin-bottom: 4px;
+            "
+          >
+            <span>⭐</span>
+            <span style="font-size: 14px; color: #656b76"
+              >{{ provider.rating }} ({{ provider.reviews }} Reviews)</span
+            >
+          </div>
+          <p style="font-size: 16px; color: #656b76">
+            {{ provider.servicesCount }} Services, From
+            <span style="color: #242b3a">{{ provider.price }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <a href="#" class="btn-view-all">View All</a>
+    </div>
+  </div>
+</section>
+
+<section class="featured-services">
+  <div class="container">
+    <h2 class="section-title">
+      Browse <span class="gradient-text">High Rated Services</span>
+    </h2>
+    <p class="section-subtitle">
+      Each listing is designed to be clear and concise, providing customers
+    </p>
+
+    <div class="service-tabs">
+      <button
+        *ngFor="let tab of highRatedTabs; let i = index"
+        class="tab-btn"
+        [class.active]="activeHighRatedTab === i"
+        (click)="selectHighRatedTab(i)"
+      >
+        {{ tab }}
+      </button>
+    </div>
+
+    <div class="services-carousel">
+      <div
+        *ngFor="let service of highRatedServices"
+        style="
+          position: relative;
+          min-width: 280px;
+          border-radius: 10px;
+          overflow: hidden;
+        "
+      >
+        <img
+          [src]="service.image"
+          alt="{{ service.title }}"
+          style="width: 100%; height: 200px; object-fit: cover"
+        />
+        <div
+          style="
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 16px;
+          "
+        >
+          <h3 style="font-size: 18px; font-weight: 600">{{ service.title }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <a href="#" class="btn-view-all">View All</a>
+    </div>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="container">
+    <h2 class="section-title">
+      Genuine reviews from <span class="gradient-text">Customers</span>
+    </h2>
+    <p class="section-subtitle">
+      Each listing is designed to be clear and concise, providing customers
+    </p>
+
+    <div class="reviews-grid">
+      <div *ngFor="let review of customerReviews" class="review-card">
+        <div class="review-stars">
+          <img
+            src="assets/images/img_symbol_amber_500.svg"
+            alt="Star"
+            class="star"
+          />
+          <img
+            src="assets/images/img_symbol_amber_500.svg"
+            alt="Star"
+            class="star"
+          />
+          <img
+            src="assets/images/img_symbol_amber_500.svg"
+            alt="Star"
+            class="star"
+          />
+          <img
+            src="assets/images/img_symbol_amber_500.svg"
+            alt="Star"
+            class="star"
+          />
+          <img
+            src="assets/images/img_symbol_amber_500.svg"
+            alt="Star"
+            class="star"
+          />
+        </div>
+        <h3 class="review-title">{{ review.title }}</h3>
+        <p class="review-text">{{ review.text }}</p>
+        <div class="reviewer">
+          <img
+            [src]="review.avatar"
+            alt="{{ review.name }}"
+            class="reviewer-avatar"
+          />
+          <span class="reviewer-name">{{ review.name }}</span>
+          <span class="review-date">{{ review.date }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+      "
+    >
+      <div style="flex: 1; text-align: left">
+        <h2 class="cta-title">
+          Add Services & Grow<br />your
+          <span class="gradient-text">business with us</span>
+        </h2>
+        <p class="cta-description">
+          A versatile platform that connects you with local professionals across
+          various categories, from home services like plumbing and electrical
+          work to personal services like photography and tutoring.
+        </p>
+        <a
+          href="#"
+          class="btn-join"
+          style="padding: 8px 16px; margin-top: 18px; display: inline-flex"
+          >Join Us</a
+        >
+      </div>
+      <div style="flex-shrink: 0">
+        <img
+          src="assets/images/img_img_418x582.png"
+          alt="Professional Services"
+          style="max-width: 400px; width: 100%; border-radius: 10px"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <app-footer></app-footer>
+</footer>

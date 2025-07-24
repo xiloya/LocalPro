@@ -59,7 +59,7 @@ def list_received_reservations():
     reservations = Reservation.query.join(Service).filter(Service.prestataire_id == identity['id']).all()
     return jsonify(reservations_schema.dump(reservations)), 200
 
-# Common: Update status (confirm, cancel)
+# Update status (confirm, cancel)
 @reservations_bp.route('/<int:id>', methods=['PUT'])
 @jwt_required()
 def update_reservation(id):

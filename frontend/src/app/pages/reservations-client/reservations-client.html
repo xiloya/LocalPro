@@ -1,0 +1,41 @@
+<div class="reservations-container">
+  <h1>My Reservations</h1>
+
+  <div class="create-reservation">
+    <label for="serviceSelect">Select Service to Book:</label>
+    <select id="serviceSelect" [(ngModel)]="selectedServiceId">
+      <option [value]="null">-- Select a Service --</option>
+      <option *ngFor="let service of services" [value]="service.id">
+        {{ service.titre }} - {{ service.prix | currency }}
+      </option>
+    </select>
+    <button (click)="createReservation()">Book Service</button>
+  </div>
+
+  <div *ngIf="loading">Loading reservations...</div>
+
+  <table *ngIf="!loading && reservations.length > 0" class="reservations-table">
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reservation of reservations">
+        <td>{{ reservation.service_id }}</td>
+        <td>{{ reservation.date | date:'short' }}</td>
+        <td>{{ reservation.status }}</td>
+        <td>
+          <button (click)="cancelReservation(reservation.id)">Cancel</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && reservations.length === 0">
+    You have no reservations.
+  </div>
+</div>
